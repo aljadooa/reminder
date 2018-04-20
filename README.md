@@ -1,2 +1,2 @@
 # reminder
-SImple reminder app.
+Docs will be available sometime this week.
