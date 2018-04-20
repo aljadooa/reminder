@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <br>
+    <ul class="list-group">
+        {% for reminder in reminders %}
+            {% if reminder.deleted != 1 %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="/r/{{reminder.id}}">{{reminder.title}}</a>
+                    <span class="badge badge-primary badge-pill">{{reminder.date}}</span>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

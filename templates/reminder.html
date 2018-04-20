@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% if reminder.deleted != 1 %}
+        <br>
+        <h2>{{reminder.title}}</h2>
+        <i><b style="color:grey; font-size:15px;">Due: {{reminder.date}}</b></i>
+        <div class="btn-toolbar">
+            <button class="btn btn-danger btn-spacer delete-btn" id="{{reminder.id}}"><i class="fas fa-trash"></i> Delete</button>
+            {% if reminder.completed == "Yes" %}
+                <form method="POST" action="uncomplete/{{reminder.id}}">
+                    <input type="hidden" name="_method" value="UNCOMPLETE">
+                    <button type="submit" class="btn btn-success btn-spacer"><i class="fas fa-times"></i> Uncomplete</button>
+                </form>
+            {% endif %}
+            {% if reminder.completed == "No" %}
+                <form method="POST" action="complete/{{reminder.id}}">
+                    <input type="hidden" name="_method" value="COMPLETE">
+                    <button type="submit" class="btn btn-success disabled" style="cursor: not-allowed;"><i class="fas fa-check"></i> Complete</button>
+                </form>
+            {% endif %}
+        </div>
+        <hr>
+        <p>{{reminder.reminder | safe}}</p>
+    {% endif %}
+    {% if reminder.deleted == 1 %}
+        <br>
+        <h2>Deleted</h2>
+        <i><b style="color:grey; font-size:15px;">Deleted</b></i>
+        <hr>
+        <p>Deleted</p>
+    {% endif %}
+{% endblock %}
