@@ -1,7 +1,10 @@
-from app import app
-from flask import jsonify, send_from_directory, request, url_for, redirect
-from utils import execute_sql
+import random
 
+from app import app
+from flask import jsonify, send_from_directory, request, url_for, redirect, flash
+from utils import execute_sql, generate
+
+# serve site assets
 @app.route('/public/<path:path>')
 def serve_static_assets(path):
     return send_from_directory('public', path)
@@ -9,13 +12,13 @@ def serve_static_assets(path):
 
 @app.route('/r/add', methods=['POST'])
 def add_reminder():
-    # query
+
     query = ("INSERT INTO reminders " 
-    "(title, reminder, date, completed) " 
-    "VALUES (%(title)s, %(reminder)s, %(date)s, %(completed)s)")
+    "(id, title, reminder, date, completed) " 
+    "VALUES (%(id)s, %(title)s, %(reminder)s, %(date)s, %(completed)s)")
     
-    # data given to database
     data = {
+        'id': generate(1000, 9999),
         'title': request.form['title'],
         'reminder': request.form['add-reminder'],
         'date': request.form['date'],
@@ -30,8 +33,7 @@ def add_reminder():
 def update():
 
     query = ("UPDATE reminders SET title = %(title)s, reminder = %(reminder)s, date = %(date)s  WHERE id = %(id)s")
-    
-    # data given to database
+
     data = {
         'id': request.args.get('id'),
         'title': request.form['title'],
@@ -48,7 +50,6 @@ def delete():
 
     query = ("UPDATE reminders SET deleted = %(deleted)s  WHERE id = %(id)s")
     
-    # data given to database
     data = {
         'id': request.args.get('id'),
         'deleted': 1
@@ -56,4 +57,35 @@ def delete():
 
     execute_sql(query, data, True, None)
 
-    return jsonify({"message": "Reminder Deleted Successfully"})
+    return jsonify({"result": "Reminder Deleted Successfully"})
+
+
+
+@app.route('/r/complete', methods=['POST'])
+def complete():
+
+    query = ("UPDATE reminders SET completed = %(completed)s  WHERE id = %(id)s")
+    
+    data = {
+        'id': request.args.get('id'),
+        'completed': 'Yes'
+    }
+
+    execute_sql(query, data, True, None)
+
+    return jsonify({"result": "Reminder marked as completed."})
+
+
+@app.route('/r/uncomplete', methods=['POST'])
+def uncomplete():
+
+    query = ("UPDATE reminders SET completed = %(completed)s  WHERE id = %(id)s")
+    
+    data = {
+        'id': request.args.get('id'),
+        'completed': 'No'
+    }
+
+    execute_sql(query, data, True, None)
+
+    return jsonify({"result": "Reminder marked as completed."})

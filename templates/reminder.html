@@ -2,23 +2,53 @@
 
 {% block body %}
     {% if reminder.deleted != 1 %}
+    <div class="modal fade" id="modal-edit">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit reminder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-form" method="POST" action="">
+                            <div class="form-group">
+                                <label class="bold" for="title">Title</label>
+                                <input type="text" name="title" class="form-control" id="edit-title" required maxlength="250" placeholder="Title">
+                            </div>
+                            <div class="form-group">
+                                    <label class="bold" for="reminder">Reminder</label>
+                                    <textarea name="edit-reminder" class="form-control" id="edit-reminder" maxlength="10000"></textarea>
+                                    <script>
+                                        CKEDITOR.replace('edit-reminder');
+                                    </script>
+                                </div>
+                            <div class="form-group">
+                                <label class="bold" for="date">Date</label>
+                                <input type="text" name="date" class="form-control" id="edit-date" required placeholder="Date">
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i> Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
         <h2>{{reminder.title}}</h2>
         <i><b style="color:grey; font-size:15px;">Due: {{reminder.date}}</b></i>
+        <br>
+        {% if reminder.completed == "Yes" %}
+            <i><b style="color:grey; font-size:15px;">Completed: Yes</b></i>
+        {% endif %}
+        {% if reminder.completed == "No" %}
+            <i><b style="color:grey; font-size:15px;">Completed: No</b></i>
+        {% endif %}
         <div class="btn-toolbar">
             <button class="btn btn-danger btn-spacer delete-btn" id="{{reminder.id}}"><i class="fas fa-trash"></i> Delete</button>
-            {% if reminder.completed == "Yes" %}
-                <form method="POST" action="uncomplete/{{reminder.id}}">
-                    <input type="hidden" name="_method" value="UNCOMPLETE">
-                    <button type="submit" class="btn btn-success btn-spacer"><i class="fas fa-times"></i> Uncomplete</button>
-                </form>
-            {% endif %}
-            {% if reminder.completed == "No" %}
-                <form method="POST" action="complete/{{reminder.id}}">
-                    <input type="hidden" name="_method" value="COMPLETE">
-                    <button type="submit" class="btn btn-success disabled" style="cursor: not-allowed;"><i class="fas fa-check"></i> Complete</button>
-                </form>
-            {% endif %}
+            <td><button class="btn btn-info update-btn pull-right" id="{{reminder.id}}"><i class="fas fa-edit"></i> Edit</button></td>
         </div>
         <hr>
         <p>{{reminder.reminder | safe}}</p>
@@ -30,4 +60,8 @@
         <hr>
         <p>Deleted</p>
     {% endif %}
+
+    <input type="hidden" id="title-{{reminder.id}}" value="{{reminder.title}}">
+    <input type="hidden" id="reminder-{{reminder.id}}" value="{{reminder.reminder | safe}}">
+    <input type="hidden" id="date-{{reminder.id}}" value="{{reminder.date}}">
 {% endblock %}

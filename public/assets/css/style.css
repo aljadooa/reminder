@@ -1,3 +1,11 @@
+.pointer {
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
 .btn-spacer {
     margin-right:15px; 
 }

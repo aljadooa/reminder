@@ -1,3 +1,5 @@
+import random
+
 from app import mysql
 
 def get_all_reminders():
@@ -48,6 +50,14 @@ def get_one_reminder(id):
     }
 
     return reminder
+
+
+def generate(start=0, end=0):
+    
+    result = random.randint(start, end)
+
+    return result
+
 
 def execute_sql(query, data, commit=False, mode=""):
 
