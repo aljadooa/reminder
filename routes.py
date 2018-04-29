@@ -17,7 +17,7 @@ def add_reminder():
     "VALUES (%(id)s, %(title)s, %(reminder)s, %(date)s, %(completed)s)")
     
     data = {
-        'id': generate(1000, 9999),
+        'id': random.randint(1000, 1999),
         'title': request.form['title'],
         'reminder': request.form['add-reminder'],
         'date': request.form['date'],
