@@ -18,7 +18,6 @@ from routes import *
 
 from utils import generate
 
-
 if __name__ == '__main__':
     app.secret_key = generate(35)
 

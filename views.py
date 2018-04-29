@@ -28,7 +28,6 @@ def reminder(id):
 
     return render_template('reminder.html', reminder=reminder, page_title=page_title)
 
-
 @app.route('/dashboard')
 def dashboard():
     page_title = "Reminder - Dashboard"

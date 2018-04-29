@@ -9,7 +9,6 @@ from utils import execute_sql, generate
 def serve_static_assets(path):
     return send_from_directory('public', path)
 
-
 @app.route('/r/add', methods=['POST'])
 def add_reminder():
 
@@ -59,8 +58,6 @@ def delete():
 
     return jsonify({"result": "Reminder Deleted Successfully"})
 
-
-
 @app.route('/r/complete', methods=['POST'])
 def complete():
 
@@ -74,7 +71,6 @@ def complete():
     execute_sql(query, data, True, None)
 
     return jsonify({"result": "Reminder marked as completed."})
-
 
 @app.route('/r/uncomplete', methods=['POST'])
 def uncomplete():

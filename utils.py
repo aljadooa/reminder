@@ -52,7 +52,6 @@ def get_one_reminder(id):
 
     return reminder
 
-
 def generate(length):
     # constants
     LENGTH=length
@@ -66,7 +65,6 @@ def generate(length):
         result += index
 
     return result
-
 
 def execute_sql(query, data, commit=False, mode=""):
 
