@@ -7,17 +7,17 @@ def index():
     page_title = "Reminder - Home"
     return render_template('index.html', page_title=page_title)
 
-
-@app.route('/test')
-def test():
-    page_title = 'test'
-    return render_template('test.html', page_title=page_title)
-
-
 @app.route('/r')
 def reminders():
+    count=0
     reminders = get_all_reminders()
-    page_title = "Reminders ({}) - All Reminders".format(len(reminders))
+
+    # reminder counter
+    for reminder in reminders:
+        if reminder['deleted'] == 0:
+            count += 1
+
+    page_title = "Reminders ({}) - All Reminders".format(count)
 
     return render_template('reminders.html', reminders=reminders, page_title=page_title)
 

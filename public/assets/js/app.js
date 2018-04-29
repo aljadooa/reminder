@@ -76,14 +76,5 @@ $(document).ready(function() {
             completed.empty();
             completed.append("No");
         }
-    });
-
+    }); // complete/uncomplete a reminder
 });
-
-
-// filter out html
-function filter(input) {
-    let result = jQuery(input).text()
-
-    return result
-}

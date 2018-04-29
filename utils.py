@@ -1,4 +1,5 @@
 import random
+import string
 
 from app import mysql
 
@@ -52,9 +53,17 @@ def get_one_reminder(id):
     return reminder
 
 
-def generate(start=0, end=0):
-    
-    result = random.randint(start, end)
+def generate(length):
+    # constants
+    LENGTH=length
+    CHARS=string.ascii_letters + string.digits + '#$%&()*+,-./:;<=>?@[]^_`{|}~'
+
+    result=''
+
+    for i in range(LENGTH):
+        index = random.choice(CHARS)
+
+        result += index
 
     return result
 
@@ -73,3 +82,4 @@ def execute_sql(query, data, commit=False, mode=""):
 
     if mode == "get":
         return cursor
+
