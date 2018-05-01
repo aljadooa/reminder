@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 
-PORT=80
+PORT=PORT_HERE
 
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'reminder'
+app.config['MYSQL_USER'] = 'USERNAME_HERE'
+app.config['MYSQL_PASSWORD'] = 'PASSWORD_HERE'
+app.config['MYSQL_DB'] = 'DATABASE_NAME_HERE'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
