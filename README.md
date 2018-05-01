@@ -44,7 +44,7 @@ In the `app.py` file...
 
 If you followed the above instructions successfully, in your command line window run the `python app.py`command and navigate to `127.0.0.1:PORT_YOU_CHOSE_HERE` in your favorite browser.
 
-note: if you want to access reminder from other devices in your home network, simply update `app.run()` to your local IP address. If you do know what your local IP address is[click here](https://www.whatismyip.com/). And make sure your firewall is either disabled or allows the site to send/receive traffic.
+note: if you want to access reminder from other devices in your home network, simply update `app.run()` to your local IP address. If you do know what your local IP address is [click here](https://www.whatismyip.com/). And make sure your firewall is either disabled or allows the site to send/receive traffic.
 
   
   
