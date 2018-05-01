@@ -90,33 +90,31 @@
 		<tbody>
 			
 			{% for reminder in reminders %}
-				{% if reminder.deleted != 1 %}
-					<tr id="r-{{reminder.id}}">
-						<th>{{reminder.id}}</th>
-						<td><a href="/r/{{reminder.id}}">{{reminder.title}}</a></td>
-						<input type="hidden" id="title-{{reminder.id}}" value="{{reminder.title}}">
-						<td>{{reminder.reminder | safe}}</td>
-						<input type="hidden" id="reminder-{{reminder.id}}" value="{{reminder.reminder | safe}}">
-						<td><p id="completed-{{reminder.id}}">{{reminder.completed}}</p></td>
-						<td>{{reminder.date}}</td>
-						<input type="hidden" id="date-{{reminder.id}}" value="{{reminder.date}}">
-						<td>
-							<div class="custom-control custom-checkbox">
-								{% if reminder.completed == "Yes" %}
-									<input type="checkbox" class="custom-control-input check-complete pointer" checked id="{{reminder.id}}">
-									<label class="custom-control-label pointer" for="{{reminder.id}}">Complete</label>
-								{% endif %}
+				<tr id="r-{{reminder.id}}">
+					<th>{{reminder.id}}</th>
+					<td><a href="/r/{{reminder.id}}">{{reminder.title}}</a></td>
+					<input type="hidden" id="title-{{reminder.id}}" value="{{reminder.title}}">
+					<td>{{reminder.reminder | safe}}</td>
+					<input type="hidden" id="reminder-{{reminder.id}}" value="{{reminder.reminder | safe}}">
+					<td><p id="completed-{{reminder.id}}">{{reminder.completed}}</p></td>
+					<td>{{reminder.date}}</td>
+					<input type="hidden" id="date-{{reminder.id}}" value="{{reminder.date}}">
+					<td>
+						<div class="custom-control custom-checkbox">
+							{% if reminder.completed == "Yes" %}
+								<input type="checkbox" class="custom-control-input check-complete pointer" checked id="{{reminder.id}}">
+								<label class="custom-control-label pointer" for="{{reminder.id}}">Complete</label>
+							{% endif %}
 
-								{% if reminder.completed == "No" %}
-									<input type="checkbox" class="custom-control-input check-complete pointer" id="{{reminder.id}}">
-									<label class="custom-control-label pointer" for="{{reminder.id}}">Complete</label>
-								{% endif %}
-							</div>
-						</td>
-						<td><button class="btn btn-info update-btn pull-right" id="{{reminder.id}}"><i class="fas fa-edit"></i> Edit</button></td>
-						<td><button class="btn btn-danger delete-btn" id="{{reminder.id}}"><i class="fas fa-trash"></i> Delete</button></td>
-					</tr>
-				{% endif %}
+							{% if reminder.completed == "No" %}
+								<input type="checkbox" class="custom-control-input check-complete pointer" id="{{reminder.id}}">
+								<label class="custom-control-label pointer" for="{{reminder.id}}">Complete</label>
+							{% endif %}
+						</div>
+					</td>
+					<td><button class="btn btn-info update-btn pull-right" id="{{reminder.id}}"><i class="fas fa-edit"></i> Edit</button></td>
+					<td><button class="btn btn-danger delete-btn" id="{{reminder.id}}"><i class="fas fa-trash"></i> Delete</button></td>
+				</tr>
 			{% endfor %}
 		</tbody>
 	</table>

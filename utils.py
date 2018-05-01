@@ -2,6 +2,7 @@ import random
 import string
 
 from app import mysql
+from htmlmin.minify import html_minify
 
 def get_all_reminders():
     
@@ -21,8 +22,11 @@ def get_all_reminders():
             'deleted': row['deleted'],
             'timestamp': row['timestamp']
         }
-
-        reminders.append(reminder)
+        # filter out reminders marked as deleted
+        if row['deleted'] == 1:
+            pass
+        else:
+            reminders.append(reminder)
     
     return reminders
 
@@ -39,18 +43,30 @@ def get_one_reminder(id):
     result = cursor.execute(query, _data)
 
     data = cursor.fetchone()
-    
-    reminder = {
-        'id': data['id'],
-        'title': data['title'],
-        'reminder': data['reminder'],
-        'date': data['date'],
-        'completed': data['completed'],
-        'deleted': data['deleted'],
-        'timestamp': data['timestamp']
-    }
 
-    return reminder
+    if data['deleted'] == 1:
+        deleted = {
+            'id': 'Deleted',
+            'title': 'Deleted',
+            'reminder': 'Deleted',
+            'date': 'Deleted',
+            'completed': 'Deleted',
+            'deleted': data['deleted'],
+            'timestamp': 'Deleted'
+        }
+        return deleted
+    else:
+        reminder = {
+            'id': data['id'],
+            'title': data['title'],
+            'reminder': data['reminder'],
+            'date': data['date'],
+            'completed': data['completed'],
+            'deleted': data['deleted'],
+            'timestamp': data['timestamp']
+        }
+
+        return reminder
 
 def generate(length):
     # constants
@@ -65,6 +81,10 @@ def generate(length):
         result += index
 
     return result
+
+# dynamic html compressor
+def compress(temp):
+    return html_minify(temp)
 
 def execute_sql(query, data, commit=False, mode=""):
 
