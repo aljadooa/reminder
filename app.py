@@ -22,5 +22,5 @@ if __name__ == '__main__':
     app.secret_key = generate(35)
 
     app.debug = True
-    app.run('10.0.0.252', PORT)
+    app.run('127.0.0.1', PORT)
     
