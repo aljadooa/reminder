@@ -26,9 +26,10 @@
                                     </div>
                                 <div class="form-group">
                                     <label class="bold" for="date">Date</label>
-                                    <input type="text" name="date" class="form-control" id="edit-date" required placeholder="Date">
+                                    <input type="date" name="date" class="form-control" id="edit-date" required placeholder="Date">
                                 </div>
                                 <div class="modal-footer">
+                                    <a class="nav-link mr-auto" href="#" data-dismiss="modal">Close</a>
                                     <button class="btn btn-primary" type="submit"><i class="fas fa-sign-in-alt"></i> Submit</button>
                                 </div>
                             </form>
@@ -69,5 +70,4 @@
                 <a class="btn btn-primary" href="/dashboard"><i class="fas fa-columns"></i> Dashbaord</a>
             </div>
         {% endif %}
-        
 {% endblock %}

@@ -1,9 +1,9 @@
 .pointer {
-    cursor: pointer;
+    cursor:pointer;
 }
 
 .hidden {
-    visibility: hidden;
+    visibility:hidden;
 }
 
 .btn-spacer {
@@ -11,6 +11,6 @@
 }
 
 .bold {
-    font-style: bold;
-    font-weight: 600;
+    font-style:bold;
+    font-weight:600;
 }

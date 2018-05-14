@@ -1,5 +1,6 @@
-import random
-import string
+import random, string
+
+from datetime import datetime
 
 from app import mysql
 from htmlmin.minify import html_minify
@@ -26,6 +27,7 @@ def get_all_reminders():
         if row['deleted'] == 1:
             pass
         else:
+            #datetime.strftime(reminder['date'], "%B/%d/%Y")
             reminders.append(reminder)
     
     return reminders
@@ -69,13 +71,12 @@ def get_one_reminder(id):
         return reminder
 
 def generate(length):
-    # constants
-    LENGTH=length
+
     CHARS=string.ascii_letters + string.digits + '#$%&()*+,-./:;<=>?@[]^_`{|}~'
 
     result=''
 
-    for i in range(LENGTH):
+    for i in range(length):
         index = random.choice(CHARS)
 
         result += index

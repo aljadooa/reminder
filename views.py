@@ -44,8 +44,10 @@ def reminder(id):
 @app.route('/dashboard')
 def dashboard():
     page_title = "Reminder - Dashboard"
+    name = "Nexus"
     reminders = get_all_reminders()
 
-    template = render_template('dashboard.html', page_title=page_title, reminders=reminders)
+
+    template = render_template('dashboard.html', page_title=page_title, name=name, reminders=reminders)
 
     return compress(template)

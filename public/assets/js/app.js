@@ -77,4 +77,6 @@ $(document).ready(function() {
             completed.append("No");
         }
     }); // complete/uncomplete a reminder
+
+
 });
