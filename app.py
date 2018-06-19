@@ -9,8 +9,8 @@ Compress(app)
 
 # mysql database credentials
 app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'nexus'
-app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'reminder'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
@@ -23,7 +23,8 @@ from utils import generate
 
 if __name__ == '__main__':
     app.secret_key = generate(35)
-
+    
+    # set this to false in prod
     app.debug = True
-    app.run('10.0.0.252', PORT)
+    app.run('locahost', PORT)
     
