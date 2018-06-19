@@ -84,8 +84,8 @@ def generate(length):
     return result
 
 # dynamic html compressor
-def compress(temp):
-    return html_minify(temp)
+def compress(template):
+    return html_minify(template)
 
 def execute_sql(query, data, commit=False, mode=""):
 

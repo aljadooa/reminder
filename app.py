@@ -1,14 +1,17 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+from flask_compress import Compress
 
-PORT=PORT_HERE
+PORT=8000
 
 app = Flask(__name__)
+Compress(app)
 
+# mysql database credentials
 app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_USER'] = 'USERNAME_HERE'
-app.config['MYSQL_PASSWORD'] = 'PASSWORD_HERE'
-app.config['MYSQL_DB'] = 'DATABASE_NAME_HERE'
+app.config['MYSQL_USER'] = 'nexus'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'reminder'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
@@ -22,5 +25,5 @@ if __name__ == '__main__':
     app.secret_key = generate(35)
 
     app.debug = True
-    app.run('127.0.0.1', PORT)
+    app.run('10.0.0.252', PORT)
     

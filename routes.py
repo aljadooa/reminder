@@ -9,7 +9,7 @@ from utils import execute_sql, generate
 def serve_static_assets(path):
     return send_from_directory('public', path)
 
-@app.route('/r/add', methods=['POST'])
+@app.route('/r/create', methods=['POST'])
 def add_reminder():
 
     query = ("INSERT INTO reminders " 
@@ -19,7 +19,7 @@ def add_reminder():
     data = {
         'id': random.randint(1000, 1999),
         'title': request.form['title'],
-        'reminder': request.form['add-reminder'],
+        'reminder': request.form['create-reminder'],
         'date': request.form['date'],
         'completed': 'No'
     }

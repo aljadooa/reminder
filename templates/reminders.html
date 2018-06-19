@@ -6,7 +6,12 @@
         {% for reminder in reminders %}
             {% if reminder.deleted != 1 %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href="/r/{{reminder.id}}">{{reminder.title}}</a>
+                    {% if reminder.completed == 'Yes' %}
+                        <a style="color:grey;" href="/r/{{reminder.id}}"><strike>{{reminder.title}}</strike></a>
+                    {% endif %}
+                    {% if reminder.completed == 'No' %}
+                        <a href="/r/{{reminder.id}}">{{reminder.title}}</a>
+                    {% endif %}
                     <span class="badge badge-primary badge-pill">{{reminder.date}}</span>
                 </li>
             {% endif %}

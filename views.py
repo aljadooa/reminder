@@ -2,7 +2,6 @@ from app import app
 from flask import render_template, jsonify, flash
 from utils import get_all_reminders, get_one_reminder, compress
 
-
 @app.route('/')
 def index():
     page_title = "Reminder - Home"
@@ -44,9 +43,8 @@ def reminder(id):
 @app.route('/dashboard')
 def dashboard():
     page_title = "Reminder - Dashboard"
-    name = "Nexus"
+    name = "Hassan"
     reminders = get_all_reminders()
-
 
     template = render_template('dashboard.html', page_title=page_title, name=name, reminders=reminders)
 
